@@ -67,6 +67,7 @@ void FirmwareUpdater::finish_update() {
   authenticate_and_handle([&](){
     server.sendHeader("Connection", "close");
     server.send(200, "text/plain", (Update.hasError()) ? "FAIL" : "OK");
+    delay(500);
     ESP.restart();
   });
 }
